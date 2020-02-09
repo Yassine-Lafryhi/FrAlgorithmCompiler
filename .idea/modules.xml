@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/AlgoC-V1.iml" filepath="$PROJECT_DIR$/AlgoC-V1.iml" />
+      <module fileurl="file://$PROJECT_DIR$/FrAlgorithmCompiler.iml" filepath="$PROJECT_DIR$/FrAlgorithmCompiler.iml" />
     </modules>
   </component>
 </project>

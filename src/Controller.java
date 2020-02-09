@@ -1,5 +1,3 @@
-package AlgoC;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -59,7 +57,6 @@ public class Controller {
 
 
     }
-
 
 
     public void Execute() throws IOException {
@@ -176,17 +173,12 @@ public class Controller {
                 c = c.replace("&&", ") and (");
 
 
-
                 if (c.contains("TantQue") || c.contains("Si")) {
 
                     c = c.replace("!", "not");
 
 
                 }
-
-
-
-
 
 
                 if (c.contains("Pour")) {

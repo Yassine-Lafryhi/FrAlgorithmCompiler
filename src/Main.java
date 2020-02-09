@@ -1,5 +1,3 @@
-package AlgoC;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -14,10 +12,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
-        Scene s = new Scene(root);
-        s.setFill(Color.TRANSPARENT);
-        s.getStylesheets().add("Style.css");
-        primaryStage.setScene(s);
+        Scene scene = new Scene(root);
+        scene.setFill(Color.TRANSPARENT);
+        scene.getStylesheets().add("Style.css");
+        primaryStage.setScene(scene);
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
