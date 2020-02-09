@@ -7,7 +7,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 
 public class Main extends Application {
-    public static Stage ps;
+    public static Stage stage;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -19,7 +19,7 @@ public class Main extends Application {
         primaryStage.setResizable(false);
         primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.show();
-        ps = primaryStage;
+        stage = primaryStage;
     }
 
 

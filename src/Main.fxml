@@ -13,32 +13,32 @@
             <Font name="American Typewriter Bold" size="53.0" />
          </font>
       </Label>
-      <Button layoutX="794.0" layoutY="89.0" mnemonicParsing="false" onAction="#Execute" prefHeight="69.0" prefWidth="264.0" style="-fx-background-radius: 5em;-fx-background-color:#3498db;" text="Exécuter" textFill="WHITE">
+      <Button layoutX="794.0" layoutY="89.0" mnemonicParsing="false" onAction="#execute" prefHeight="69.0" prefWidth="264.0" style="-fx-background-radius: 5em;-fx-background-color:#3498db;" text="Exécuter" textFill="WHITE">
          <font>
             <Font name="American Typewriter Bold" size="36.0" />
          </font>
       </Button>
-      <TextArea fx:id="AlgorithmArea" layoutX="19.0" layoutY="240.0" prefHeight="503.0" prefWidth="1037.0">
+      <TextArea fx:id="codeArea" layoutX="19.0" layoutY="240.0" prefHeight="503.0" prefWidth="1037.0">
          <font>
             <Font name="American Typewriter Bold" size="36.0" />
          </font>
       </TextArea>
-      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="89.0" mnemonicParsing="false" onAction="#InsertDefault" prefHeight="69.0" prefWidth="714.0" style="-fx-background-radius: 5em;-fx-background-color:#006266;" text="Insérer la forme générale de l'algorithme" textAlignment="CENTER" textFill="WHITE">
+      <Button alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="89.0" mnemonicParsing="false" onAction="#insertDefault" prefHeight="69.0" prefWidth="714.0" style="-fx-background-radius: 5em;-fx-background-color:#006266;" text="Insérer la forme générale de l'algorithme" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="American Typewriter Bold" size="29.0" />
          </font>
       </Button>
-      <Button layoutX="967.0" layoutY="6.0" mnemonicParsing="false" onAction="#Exit" prefHeight="42.0" prefWidth="71.0" style="-fx-background-radius: 5em;-fx-background-color:#eb3b5a;" text="×" textFill="WHITE">
+      <Button layoutX="967.0" layoutY="6.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="71.0" style="-fx-background-radius: 5em;-fx-background-color:#eb3b5a;" text="×" textFill="WHITE">
          <font>
             <Font name="American Typewriter Bold" size="36.0" />
          </font>
       </Button>
-      <Button layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#Minimize" prefHeight="42.0" prefWidth="71.0" style="-fx-background-radius: 5em;-fx-background-color:#4b7bec;" text="-" textFill="WHITE">
+      <Button layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#minimize" prefHeight="42.0" prefWidth="71.0" style="-fx-background-radius: 5em;-fx-background-color:#4b7bec;" text="-" textFill="WHITE">
          <font>
             <Font name="American Typewriter Bold" size="36.0" />
          </font>
       </Button>
-      <Label fx:id="msg" alignment="CENTER" layoutX="15.0" layoutY="171.0" prefHeight="61.0" prefWidth="1050.0" text="Veuillez écrire un algorithme ici et l'exécuter" textAlignment="CENTER" textFill="WHITE">
+      <Label fx:id="message" alignment="CENTER" layoutX="15.0" layoutY="171.0" prefHeight="61.0" prefWidth="1050.0" text="Veuillez écrire un algorithme ici et l'exécuter" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font name="American Typewriter Bold" size="38.0" />
          </font>

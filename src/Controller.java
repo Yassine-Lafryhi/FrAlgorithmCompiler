@@ -6,277 +6,167 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-
 public class Controller {
-
     @FXML
-    TextArea AlgorithmArea;
-
+    TextArea codeArea;
     @FXML
-    Label msg;
-
-
-    String DoneText = "";
-    String b = "";
-    String PasFilePath = "";
-    String AlgoFilePath = "";
-
-    boolean SuccessfullyCompiled = false;
+    Label message;
+    String doneText = "";
+    String pasFileContent = "";
+    String pasFilePath = "";
+    String algoFilePath = "";
+    boolean successfullyCompiled = false;
 
     public void initialize() {
-
-
         File directory = new File(System.getProperty("user.home") + "/ALGOS/");
         if (!directory.exists()) {
             directory.mkdir();
-
         }
-
-
-        AlgorithmArea.setWrapText(true);
-
-
+        codeArea.setWrapText(true);
     }
 
-
-    public void Save(String SavingPath) {
-
-
-        PrintWriter writer = null;
+    public void save(String savingPath) {
+        PrintWriter printWriter = null;
         try {
-            writer = new PrintWriter(SavingPath, "UTF-8");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+            printWriter = new PrintWriter(savingPath, "UTF-8");
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        writer.print(AlgorithmArea.getText());
-
-        writer.close();
-        DoneText = AlgorithmArea.getText();
-
-
+        if (printWriter != null) {
+            printWriter.print(codeArea.getText());
+            printWriter.close();
+        }
+        doneText = codeArea.getText();
     }
 
-
-    public void Execute() throws IOException {
-        msg.setText("");
-        b = "";
-
-
-        String FileName = new SimpleDateFormat("yyyyMMddHHmmss").format(Calendar.getInstance().getTime());
-        AlgoFilePath = System.getProperty("user.home") + "/ALGOS/" + FileName + ".algo";
-
-        Save(AlgoFilePath);
-
-
-        Traiter(AlgoFilePath);
+    public void execute() throws IOException {
+        message.setText("");
+        pasFileContent = "";
+        String fileName = new SimpleDateFormat("yyyyMMddHHmmss").format(Calendar.getInstance().getTime());
+        algoFilePath = System.getProperty("user.home") + "/ALGOS/" + fileName + ".algo";
+        save(algoFilePath);
+        process(algoFilePath);
         try {
-
-
-            ProcessBuilder builder = new ProcessBuilder("/bin/bash", "-c", "fpc " + PasFilePath);
-            builder.redirectErrorStream(true);
-            Process p = null;
-
-            p = builder.start();
-
-            BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-            String line = "";
-            while ((line = r.readLine()) != null) {
-
+            ProcessBuilder processBuilder = new ProcessBuilder("/bin/bash", "-c", "fpc " + pasFilePath);
+            processBuilder.redirectErrorStream(true);
+            Process process = processBuilder.start();
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            String line;
+            while ((line = bufferedReader.readLine()) != null) {
                 System.out.println(line + "\n");
-
                 if (line.contains("error")) {
-
-                    msg.setStyle("-fx-text-fill:#e74c3c;");
-                    msg.setText("Il y a une erreur quelque part, s'il vous plaît vérifier !");
-                    SuccessfullyCompiled = false;
+                    message.setStyle("-fx-text-fill:#e74c3c;");
+                    message.setText("Il y a une erreur quelque part, s'il vous plaît vérifier !");
+                    successfullyCompiled = false;
                     break;
-
                 } else if (line.contains("compiled")) {
-
-                    SuccessfullyCompiled = true;
-
-                    msg.setStyle("-fx-text-fill:#2ecc71;");
-                    msg.setText("L'algorithme a été compilé avec succès !");
+                    successfullyCompiled = true;
+                    message.setStyle("-fx-text-fill:#2ecc71;");
+                    message.setText("L'algorithme a été compilé avec succès !");
                 }
             }
-
-
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
-        if (SuccessfullyCompiled) {
-
-            String path = PasFilePath.replace(".pas", "");
-            File f = new File(path);
-            while (!f.exists()) {
+        if (successfullyCompiled) {
+            String path = pasFilePath.replace(".pas", "");
+            File file = new File(path);
+            while (!file.exists()) {
             }
-            String[] cmd = {"/bin/bash", "-c", "open " + path};
-            Runtime.getRuntime().exec(cmd);
-
+            String[] command = {"/bin/bash", "-c", "open " + path};
+            Runtime.getRuntime().exec(command);
         }
     }
 
-
-    public void Traiter(String path) {
-
-        String fileName = path;
-
-        String line = "";
-
+    public void process(String path) {
+        String line;
         try {
-
-            FileReader fileReader = new FileReader(fileName);
-
-
-            BufferedReader bufferedReader =
-                    new BufferedReader(fileReader);
-
+            FileReader fileReader = new FileReader(path);
+            BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
-
-
-                String c = line;
-
-
-                c = c.replace("Algorithme", "program");
-                c = c.replace("Variable", "var");
-
-                c = c.replace("Entier", "Integer");
-                c = c.replace("Booléen", "Boolean");
-                c = c.replace("Caractère", "Char");
-                c = c.replace("Réel", "Real");
-
-
-                c = c.replace("Ecrire", "writeln");
-
-
-                c = c.replace("Ecrire", "writeln");
-
-
-                c = c.replace("Sinon", " end else begin");
-
-                c = c.replace("Vrai", "true");
-                c = c.replace("Faux", "false");
-
-
-                c = c.replace("\"", "'");
-                c = c.replace("Lire", "readln");
-                c = c.replace("←", ":=");
-                c = c.replace("/", " div ");
-                c = c.replace("%", " mod ");
-
-                c = c.replace("||", ") or (");
-                c = c.replace("&&", ") and (");
-
-
-                if (c.contains("TantQue") || c.contains("Si")) {
-
-                    c = c.replace("!", "not");
-
-
+                String _line = line;
+                _line = _line.replace("Algorithme", "program");
+                _line = _line.replace("Variable", "var");
+                _line = _line.replace("Entier", "Integer");
+                _line = _line.replace("Booléen", "Boolean");
+                _line = _line.replace("Caractère", "Char");
+                _line = _line.replace("Réel", "Real");
+                _line = _line.replace("Ecrire", "writeln");
+                _line = _line.replace("Ecrire", "writeln");
+                _line = _line.replace("Sinon", " end else begin");
+                _line = _line.replace("Vrai", "true");
+                _line = _line.replace("Faux", "false");
+                _line = _line.replace("\"", "'");
+                _line = _line.replace("Lire", "readln");
+                _line = _line.replace("←", ":=");
+                _line = _line.replace("/", " div ");
+                _line = _line.replace("%", " mod ");
+                _line = _line.replace("||", ") or (");
+                _line = _line.replace("&&", ") and (");
+                if (_line.contains("TantQue") || _line.contains("Si")) {
+                    _line = _line.replace("!", "not");
                 }
-
-
-                if (c.contains("Pour")) {
-                    c = c.replace("Jusqu'à", "to");
+                if (_line.contains("Pour")) {
+                    _line = _line.replace("Jusqu'à", "to");
                 } else {
-                    c = c.replace("Jusqu'à", "until");
+                    _line = _line.replace("Jusqu'à", "until");
                 }
-
-
-                c = c.replace("Répéter", "repeat");
-
-                if (c.contains("Pour")) {
-                    c = c.replace("Faire", "do begin");
+                _line = _line.replace("Répéter", "repeat");
+                if (_line.contains("Pour")) {
+                    _line = _line.replace("Faire", "do begin");
                 } else {
-                    c = c.replace("Faire", ") do begin");
-
+                    _line = _line.replace("Faire", ") do begin");
                 }
-
-
-                if (!c.contains("Fin")) {
-                    c = c.replace("Si", "if(");
-                    c = c.replace("TantQue", "while (");
-                    c = c.replace("Pour", "for");
-                } else if (c.contains("Si")) {
-                    c = c.replace("FinSi", "end;");
-                } else if (c.contains("Tant")) {
-                    c = c.replace("FinTantQue", "end;");
-                } else if (c.contains("Pour")) {
-                    c = c.replace("FinPour", "end;");
+                if (!_line.contains("Fin")) {
+                    _line = _line.replace("Si", "if(");
+                    _line = _line.replace("TantQue", "while (");
+                    _line = _line.replace("Pour", "for");
+                } else if (_line.contains("Si")) {
+                    _line = _line.replace("FinSi", "end;");
+                } else if (_line.contains("Tant")) {
+                    _line = _line.replace("FinTantQue", "end;");
+                } else if (_line.contains("Pour")) {
+                    _line = _line.replace("FinPour", "end;");
                 }
+                _line = _line.replace("Alors", ") then begin");
 
-
-                c = c.replace("Alors", ") then begin");
-
-                c = c.replace("Début", "begin");
-
-
-                if (c.equals("Fin")) {
-                    c = "writeln('Appuyez sur une touche pour quitter');\nreadln();\nend.";
+                _line = _line.replace("Début", "begin");
+                if (_line.equals("Fin")) {
+                    _line = "writeln('Appuyez sur une touche pour quitter');\nreadln();\nend.";
                 }
-
-
-                if (c.contains("begin") || c.contains("end.") || c.contains("end") || c.contains("repeat")) {
-                    b = b + c + "\n";
-
-
+                if (_line.contains("begin") || _line.contains("end.") || _line.contains("end") || _line.contains("repeat")) {
+                    pasFileContent = pasFileContent + _line + "\n";
                 } else {
-
-                    b = b + c + ";\n";
+                    pasFileContent = pasFileContent + _line + ";\n";
                 }
-
-
             }
-
-
             bufferedReader.close();
-        } catch (FileNotFoundException ex) {
-            System.out.println(
-                    "Unable to open file '" +
-                            fileName + "'");
-        } catch (IOException ex) {
-            System.out.println(
-                    "Error reading file '"
-                            + fileName + "'");
-
+        } catch (IOException e) {
+            e.printStackTrace();
         }
-
-
-        PasFilePath = AlgoFilePath.replace("algo", "pas");
-        System.out.println(PasFilePath);
+        pasFilePath = algoFilePath.replace("algo", "pas");
+        System.out.println(pasFilePath);
         PrintWriter writer = null;
         try {
-            writer = new PrintWriter(PasFilePath, "UTF-8");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
+            writer = new PrintWriter(pasFilePath, "UTF-8");
+        } catch (FileNotFoundException | UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        writer.println(b);
-
-        writer.close();
-
-
+        if (writer != null) {
+            writer.println(pasFileContent);
+            writer.close();
+        }
     }
 
-
-    public void InsertDefault() {
-        AlgorithmArea.setText("Algorithme Algo1\nVariable a : Entier\nDébut\nEcrire(\"Salut !\")\na ← 50\nEcrire(\"A = \",a)\nFin");
-
+    public void insertDefault() {
+        codeArea.setText("Algorithme Algo1\nVariable a : Entier\nDébut\nEcrire(\"Salut !\")\na ← 50\nEcrire(\"A = \",a)\nFin");
     }
 
-
-    public void Exit() {
+    public void exit() {
         System.exit(0);
     }
 
-    public void Minimize() {
-        Main.ps.setIconified(true);
+    public void minimize() {
+        Main.stage.setIconified(true);
     }
-
 }
