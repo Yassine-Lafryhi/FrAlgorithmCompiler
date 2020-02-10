@@ -5,6 +5,7 @@ import javafx.scene.control.TextArea;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Objects;
 
 public class Controller {
     @FXML
@@ -21,6 +22,9 @@ public class Controller {
         File directory = new File(System.getProperty("user.home") + "/ALGOS/");
         if (!directory.exists()) {
             directory.mkdir();
+        } else {
+            for (File file : Objects.requireNonNull(directory.listFiles()))
+                file.delete();
         }
         codeArea.setWrapText(true);
     }
@@ -71,8 +75,7 @@ public class Controller {
         if (successfullyCompiled) {
             String path = pasFilePath.replace(".pas", "");
             File file = new File(path);
-            while (!file.exists()) {
-            }
+            while (!file.exists());
             String[] command = {"/bin/bash", "-c", "open " + path};
             Runtime.getRuntime().exec(command);
         }
@@ -84,60 +87,58 @@ public class Controller {
             FileReader fileReader = new FileReader(path);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
             while ((line = bufferedReader.readLine()) != null) {
-                String _line = line;
-                _line = _line.replace("Algorithme", "program");
-                _line = _line.replace("Variable", "var");
-                _line = _line.replace("Entier", "Integer");
-                _line = _line.replace("Booléen", "Boolean");
-                _line = _line.replace("Caractère", "Char");
-                _line = _line.replace("Réel", "Real");
-                _line = _line.replace("Ecrire", "writeln");
-                _line = _line.replace("Ecrire", "writeln");
-                _line = _line.replace("Sinon", " end else begin");
-                _line = _line.replace("Vrai", "true");
-                _line = _line.replace("Faux", "false");
-                _line = _line.replace("\"", "'");
-                _line = _line.replace("Lire", "readln");
-                _line = _line.replace("←", ":=");
-                _line = _line.replace("/", " div ");
-                _line = _line.replace("%", " mod ");
-                _line = _line.replace("||", ") or (");
-                _line = _line.replace("&&", ") and (");
-                if (_line.contains("TantQue") || _line.contains("Si")) {
-                    _line = _line.replace("!", "not");
+                String replacedLine = line;
+                replacedLine = replacedLine.replace("Algorithme", "program");
+                replacedLine = replacedLine.replace("Variable", "var");
+                replacedLine = replacedLine.replace("Entier", "Integer");
+                replacedLine = replacedLine.replace("Booléen", "Boolean");
+                replacedLine = replacedLine.replace("Caractère", "Char");
+                replacedLine = replacedLine.replace("Réel", "Real");
+                replacedLine = replacedLine.replace("Ecrire", "writeln");
+                replacedLine = replacedLine.replace("Sinon", " end else begin");
+                replacedLine = replacedLine.replace("Vrai", "true");
+                replacedLine = replacedLine.replace("Faux", "false");
+                replacedLine = replacedLine.replace("\"", "'");
+                replacedLine = replacedLine.replace("Lire", "readln");
+                replacedLine = replacedLine.replace("←", ":=");
+                replacedLine = replacedLine.replace("/", " div ");
+                replacedLine = replacedLine.replace("%", " mod ");
+                replacedLine = replacedLine.replace("||", ") or (");
+                replacedLine = replacedLine.replace("&&", ") and (");
+                if (replacedLine.contains("TantQue") || replacedLine.contains("Si")) {
+                    replacedLine = replacedLine.replace("!", "not");
                 }
-                if (_line.contains("Pour")) {
-                    _line = _line.replace("Jusqu'à", "to");
+                if (replacedLine.contains("Pour")) {
+                    replacedLine = replacedLine.replace("Jusqu'à", "to");
                 } else {
-                    _line = _line.replace("Jusqu'à", "until");
+                    replacedLine = replacedLine.replace("Jusqu'à", "until");
                 }
-                _line = _line.replace("Répéter", "repeat");
-                if (_line.contains("Pour")) {
-                    _line = _line.replace("Faire", "do begin");
+                replacedLine = replacedLine.replace("Répéter", "repeat");
+                if (replacedLine.contains("Pour")) {
+                    replacedLine = replacedLine.replace("Faire", "do begin");
                 } else {
-                    _line = _line.replace("Faire", ") do begin");
+                    replacedLine = replacedLine.replace("Faire", ") do begin");
                 }
-                if (!_line.contains("Fin")) {
-                    _line = _line.replace("Si", "if(");
-                    _line = _line.replace("TantQue", "while (");
-                    _line = _line.replace("Pour", "for");
-                } else if (_line.contains("Si")) {
-                    _line = _line.replace("FinSi", "end;");
-                } else if (_line.contains("Tant")) {
-                    _line = _line.replace("FinTantQue", "end;");
-                } else if (_line.contains("Pour")) {
-                    _line = _line.replace("FinPour", "end;");
+                if (!replacedLine.contains("Fin")) {
+                    replacedLine = replacedLine.replace("Si", "if(");
+                    replacedLine = replacedLine.replace("TantQue", "while (");
+                    replacedLine = replacedLine.replace("Pour", "for");
+                } else if (replacedLine.contains("Si")) {
+                    replacedLine = replacedLine.replace("FinSi", "end;");
+                } else if (replacedLine.contains("Tant")) {
+                    replacedLine = replacedLine.replace("FinTantQue", "end;");
+                } else if (replacedLine.contains("Pour")) {
+                    replacedLine = replacedLine.replace("FinPour", "end;");
                 }
-                _line = _line.replace("Alors", ") then begin");
-
-                _line = _line.replace("Début", "begin");
-                if (_line.equals("Fin")) {
-                    _line = "writeln('Appuyez sur une touche pour quitter');\nreadln();\nend.";
+                replacedLine = replacedLine.replace("Alors", ") then begin");
+                replacedLine = replacedLine.replace("Début", "begin");
+                if (replacedLine.equals("Fin")) {
+                    replacedLine = "writeln('Appuyez sur une touche pour quitter');\nreadln();\nend.";
                 }
-                if (_line.contains("begin") || _line.contains("end.") || _line.contains("end") || _line.contains("repeat")) {
-                    pasFileContent = pasFileContent + _line + "\n";
+                if (replacedLine.contains("begin") || replacedLine.contains("end.") || replacedLine.contains("end") || replacedLine.contains("repeat")) {
+                    pasFileContent = pasFileContent.concat(replacedLine + "\n");
                 } else {
-                    pasFileContent = pasFileContent + _line + ";\n";
+                    pasFileContent = pasFileContent.concat(replacedLine + ";\n");
                 }
             }
             bufferedReader.close();
