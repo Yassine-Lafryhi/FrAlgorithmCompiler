@@ -7,7 +7,7 @@
 
 ## Built With
 * [JavaFX](https://openjfx.io/)
-## Prerequisites :
+## Prerequisites
 
 - Install fpc (Free Pascal Compiler) :
 > On MAC OS using [Homebrew](https://brew.sh/) :
@@ -22,7 +22,7 @@ sudo apt-get install fp-compiler
 ```shell
 choco install freepascal
 ```
-## Screenshots :
+## Screenshots
 
 ![](screenshots/ScreenShot1.png)
 
@@ -39,7 +39,7 @@ choco install freepascal
 ![](screenshots/ScreenShot7.png)
 
 ![](screenshots/ScreenShot8.png)
-## Examples :
+## Examples
 
 
 ```pascal
@@ -87,6 +87,23 @@ Début
 Fin
 ```
 
+```pascal
+Algorithme NombrePremier
+    Variable i , j , n : Entier
+Début
+	Pour i ← 2  Jusqu'à 100 Faire
+		n ← 0
+		Pour j ← 2  Jusqu'à (i/2)  Faire
+			Si i % j = 0 Alors
+				n ← n + 1
+			FinSi
+		FinPour
+		Si n = 0 Alors
+			Ecrire(i)
+		FinSi
+	FinPour
+Fin
+```
 ## Contributing
 
 Contributions are what make the open source community such an amazing place to be learn, inspire, and create. Any contributions you make are **greatly appreciated**.
