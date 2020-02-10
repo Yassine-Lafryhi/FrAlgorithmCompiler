@@ -1,0 +1,21 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="FrAlgorithmCompiler">
+    <output-path>$PROJECT_DIR$/out/artifacts/FrAlgorithmCompiler</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="me.FrAlgorithmCompiler.Main" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="nativeBundle" value="all" />
+        <option name="title" value="FrAlgorithmCompiler" />
+        <option name="vendor" value="" />
+        <option name="version" value="1.0.0" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="FrAlgorithmCompiler.jar">
+        <element id="module-output" name="FrAlgorithmCompiler" />
+      </element>
+    </root>
+  </artifact>
+</component>

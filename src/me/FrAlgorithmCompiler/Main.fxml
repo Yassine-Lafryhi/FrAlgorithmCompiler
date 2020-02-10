@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<Pane prefHeight="777.0" prefWidth="1083.0" style="-fx-background-radius: 5em;-fx-background-color:#2c2c54;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller">
+<Pane prefHeight="777.0" prefWidth="1083.0" style="-fx-background-radius: 5em;-fx-background-color:#2c2c54;" xmlns="http://javafx.com/javafx/8.0.172-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="me.FrAlgorithmCompiler.Controller">
    <children>
       <Label alignment="CENTER" layoutX="-3.0" layoutY="-3.0" prefHeight="79.0" prefWidth="1091.0" text="Compilateur D'Algorithme " textAlignment="CENTER" textFill="white">
          <font>
