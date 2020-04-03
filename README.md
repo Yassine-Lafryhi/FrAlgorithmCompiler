@@ -119,3 +119,5 @@ Contributions are what make the open source community such an amazing place to b
 ## Contact
 - Yassine Lafryhi - [@YassineLafryhi](https://twitter.com/YassineLafryhi) - [y.lafryhi@gmail.com](mailto:y.lafryhi@gmail.com)
 - Project Link : [https://github.com/Yassine-Lafryhi/FrAlgorithmCompiler](https://github.com/Yassine-Lafryhi/FrAlgorithmCompiler)
+
+>If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of ☕️ : [PayPal](https://paypal.me/YASSINELAFRYHI)
