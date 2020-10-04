@@ -1,4 +1,4 @@
-# FrAlgorithmCompiler
+# Fralgo
 > A Java application for compiling and executing algorithms in French, based on Pascal
 
 ![](https://img.shields.io/badge/build-passing-brightgreen)
