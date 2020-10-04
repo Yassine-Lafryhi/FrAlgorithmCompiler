@@ -3,7 +3,7 @@
 
 ![](https://img.shields.io/badge/build-passing-brightgreen)
 ![](https://img.shields.io/badge/license-Apache-blue)
-![](https://img.shields.io/badge/version-1.0.0-orange)
+![](https://img.shields.io/badge/version-1.0.1-orange)
 
 ## Built With
 * [JavaFX](https://openjfx.io/)
@@ -39,6 +39,10 @@ choco install freepascal
 ![](screenshots/ScreenShot7.png)
 
 ![](screenshots/ScreenShot8.png)
+
+![](screenshots/ScreenShot9.png)
+
+![](screenshots/ScreenShot10.png)
 ## Examples
 
 
@@ -118,6 +122,6 @@ Contributions are what make the open source community such an amazing place to b
 [Apache License 2.0](https://choosealicense.com/licenses/apache-2.0/)
 ## Contact
 - Yassine Lafryhi - [@YassineLafryhi](https://twitter.com/YassineLafryhi) - [y.lafryhi@gmail.com](mailto:y.lafryhi@gmail.com)
-- Project Link : [https://github.com/Yassine-Lafryhi/FrAlgorithmCompiler](https://github.com/Yassine-Lafryhi/FrAlgorithmCompiler)
+- Project Link : [https://github.com/Yassine-Lafryhi/Fralgo](https://github.com/Yassine-Lafryhi/Fralgo)
 
->If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of ☕️ : [PayPal](https://paypal.me/YASSINELAFRYHI)
+>If you found this project helpful, or you learned something from the source code and want to thank me, consider buying me a cup of ☕️ : [PayPal](https://paypal.me/YASSINELAFRYHI)
