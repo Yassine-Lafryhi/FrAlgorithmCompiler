@@ -1,5 +1,6 @@
-package me.FrAlgorithmCompiler;
+package com.fralgo.controllers;
 
+import com.fralgo.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -62,7 +63,7 @@ public class Controller {
                 System.out.println(line + "\n");
                 if (line.contains("error")) {
                     message.setStyle("-fx-text-fill:#e74c3c;");
-                    message.setText("Il y a une erreur quelque part, s'il vous plaît vérifier !");
+                    message.setText("Il y a une erreur quelque part, veuillez vérifier !");
                     successfullyCompiled = false;
                     break;
                 } else if (line.contains("compiled")) {
@@ -77,7 +78,7 @@ public class Controller {
         if (successfullyCompiled) {
             String path = pasFilePath.replace(".pas", "");
             File file = new File(path);
-            while (!file.exists());
+            while (!file.exists()) ;
             String[] command = {"/bin/bash", "-c", "open " + path};
             Runtime.getRuntime().exec(command);
         }

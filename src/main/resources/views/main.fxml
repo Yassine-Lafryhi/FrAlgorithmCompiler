@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<Pane prefHeight="777.0" prefWidth="1083.0" style="-fx-background-radius: 5em;-fx-background-color:#2c2c54;" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.fralgo.controllers.Controller">
+    <children>
+        <Label alignment="CENTER" layoutX="-3.0" layoutY="-3.0" prefHeight="79.0" prefWidth="1091.0" text="Fralgo" textAlignment="CENTER" textFill="white">
+            <font>
+                <Font name="DINRoundPro-Medi" size="53.0" />
+            </font>
+        </Label>
+        <Button layoutX="794.0" layoutY="89.0" mnemonicParsing="false" onAction="#execute" prefHeight="69.0" prefWidth="264.0" style="-fx-background-radius: 5em;-fx-background-color:#3498db;" text="Exécuter" textFill="WHITE">
+            <font>
+                <Font name="DINRoundPro-Medi" size="36.0" />
+            </font>
+        </Button>
+        <TextArea fx:id="codeArea" layoutX="19.0" layoutY="240.0" prefHeight="503.0" prefWidth="1037.0">
+            <font>
+                <Font name="DINRoundPro-Medi" size="36.0" />
+            </font>
+        </TextArea>
+        <Button alignment="CENTER" contentDisplay="CENTER" layoutX="17.0" layoutY="89.0" mnemonicParsing="false" onAction="#insertDefault" prefHeight="69.0" prefWidth="714.0" style="-fx-background-radius: 5em;-fx-background-color:#006266;" text="Insérer la forme générale de l'algorithme" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="DINRoundPro-Medi" size="29.0" />
+            </font>
+        </Button>
+        <Button layoutX="967.0" layoutY="6.0" mnemonicParsing="false" onAction="#exit" prefHeight="42.0" prefWidth="71.0" style="-fx-background-radius: 5em;-fx-background-color:#eb3b5a;" text="×" textFill="WHITE">
+            <font>
+                <Font name="DINRoundPro-Medi" size="36.0" />
+            </font>
+        </Button>
+        <Button layoutX="40.0" layoutY="6.0" mnemonicParsing="false" onAction="#minimize" prefHeight="42.0" prefWidth="71.0" style="-fx-background-radius: 5em;-fx-background-color:#4b7bec;" text="-" textFill="WHITE">
+            <font>
+                <Font name="DINRoundPro-Medi" size="36.0" />
+            </font>
+        </Button>
+        <Label fx:id="message" alignment="CENTER" layoutX="15.0" layoutY="171.0" prefHeight="61.0" prefWidth="1050.0" text="Veuillez écrire un algorithme ici et l'exécuter" textAlignment="CENTER" textFill="WHITE">
+            <font>
+                <Font name="DINRoundPro-Medi" size="38.0" />
+            </font>
+        </Label>
+    </children>
+</Pane>

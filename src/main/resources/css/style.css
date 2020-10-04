@@ -1,25 +1,22 @@
 .text-area .scroll-pane {
     -fx-background-color: transparent;
 }
-.text-area .scroll-pane .viewport{
-    -fx-background-color: transparent;
-}
-.text-area .scroll-pane .content{
+
+.text-area .scroll-pane .viewport {
     -fx-background-color: transparent;
 }
 
+.text-area .scroll-pane .content {
+    -fx-background-color: transparent;
+}
 
 .text-area {
-    -fx-background-color:#c0392b;
+    -fx-background-color: #c0392b;
     -fx-background-radius: 5em;
     -fx-text-fill: #ffffff;
     -fx-border-radius: 5em;
     -fx-padding: 10 10 10 10;
 }
-
-
-
-
 
 .text-area .scroll-bar:vertical {
     -fx-opacity: 0;
